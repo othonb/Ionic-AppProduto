@@ -9,6 +9,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FormCategoriaPage {
 
+  categoriaNome : string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
