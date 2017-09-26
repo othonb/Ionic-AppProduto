@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the FormProdutoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { CategoriaProvider } from '../../providers/categoria/categoria';
 
 @IonicPage()
 @Component({
@@ -15,8 +9,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FormProdutoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    produtoNome : string;
+    produtoPreco : number;
+    produtoCategoria : number;
+    categoriaVetor : Array <any>;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private categoriaService : CategoriaProvider
+  ) {
+
+      this.categoriaService.findAll ().then ((r) => this.categoriaVetor = r.json()
+    ).catch ((e) => console.log ("Erro na obtenção das categorias: " + e));
+
+   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FormProdutoPage');
